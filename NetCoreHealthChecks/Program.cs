@@ -1,5 +1,4 @@
 using HealthChecks.UI.Client;
-using Microsoft.EntityFrameworkCore.Scaffolding;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.ServiceProcess;
 
@@ -18,7 +17,7 @@ builder.Services.AddHealthChecks()
   .AddProcessAllocatedMemoryHealthCheck(6144, name:"Ram Status") // 6144 MB max allocated memory
   .AddProcessHealthCheck("System", p => p.Length > 0,name: "System Process Status") // check if process is running
   .AddWindowsServiceHealthCheck("MySQL-Server", s => s.Status == ServiceControllerStatus.Running,name:"MySql Status")
-  .AddUrlGroup(new Uri("https://finansmix.com/altin-fiyatlari"),"Finansmix Data Status",timeout:TimeSpan.FromSeconds(30)).AddCheck<MyCustomCheck>(name:"Custom Service Status");
+  .AddUrlGroup(new Uri("https://jsonplaceholder.typicode.com/posts"), "Json Place Holder Sample Api Status", timeout:TimeSpan.FromSeconds(30)).AddCheck<MyCustomCheck>(name:"Custom Service Status");
   
   
 
